@@ -1,0 +1,13 @@
+.claude/scheduled_tasks.lock
+config.sh
+launchd/*.plist
+logs/
+openbrain/.vscode/
+USER.md
+openbrain/node_modules/
+openbrain/viewer/config.js
+openbrain/.env
+openbrain/.env.local
+openbrain/supabase/.branches/
+openbrain/supabase/.temp/
+bin/__pycache__/

@@ -1,0 +1,30 @@
+{
+  "channelsEnabled": true,
+  "enabledPlugins": {
+    "telegram@claude-plugins-official": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/jarvis/bin/openbrain-startup.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[Current time: $(date '+%Y-%m-%d %H:%M %Z')]\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

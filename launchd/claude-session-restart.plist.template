@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>{{JARVIS_LAUNCHD_PREFIX}}.claude-session-restart</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>launchctl kickstart -k gui/$(id -u)/{{JARVIS_LAUNCHD_PREFIX}}.claude-session</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>3</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>{{JARVIS_WORKSPACE}}/logs/session-restart.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>{{JARVIS_WORKSPACE}}/logs/session-restart-error.log</string>
+</dict>
+</plist>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>{{JARVIS_LAUNCHD_PREFIX}}.claude-session</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>{{JARVIS_DIR}}/bin/start-session.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>{{JARVIS_DIR}}</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>HOME</key>
+        <string>/Users/{{JARVIS_USERNAME}}</string>
+        <key>PATH</key>
+        <string>/Users/{{JARVIS_USERNAME}}/.bun/bin:/Users/{{JARVIS_USERNAME}}/.local/bin:/Users/{{JARVIS_USERNAME}}/.nvm/versions/node/{{JARVIS_NODE_VERSION}}/bin:/Library/Frameworks/Python.framework/Versions/{{JARVIS_PYTHON_VERSION}}/bin:/Users/{{JARVIS_USERNAME}}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>NODE_PATH</key>
+        <string>/Users/{{JARVIS_USERNAME}}/.nvm/versions/node/{{JARVIS_NODE_VERSION}}/lib/node_modules</string>
+        <key>JARVIS_DIR</key>
+        <string>{{JARVIS_DIR}}</string>
+        <key>JARVIS_WORKSPACE</key>
+        <string>{{JARVIS_WORKSPACE}}</string>
+        <key>DISABLE_AUTOUPDATER</key>
+        <string>1</string>
+    </dict>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>{{JARVIS_WORKSPACE}}/logs/session.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>{{JARVIS_WORKSPACE}}/logs/session-error.log</string>
+
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+</dict>
+</plist>

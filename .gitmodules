@@ -1,0 +1,4 @@
+[submodule "openbrain"]
+	path = openbrain
+	url = git@github.com:finik/openbrain.git
+	branch = main
