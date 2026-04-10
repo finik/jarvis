@@ -28,6 +28,10 @@ JARVIS_NODE_VERSION="v18.17.1"
 # Python version (used in PATH setup)
 JARVIS_PYTHON_VERSION="3.13"
 
+# Open Brain MCP endpoint and access key (used by dreaming post-processor and viewer)
+OPENBRAIN_URL="https://your-project.supabase.co/functions/v1/open-brain-mcp"
+OPENBRAIN_KEY="your-x-brain-key-value"
+
 # Workspace directory — runtime files (logs, config, USER.md, MEMORY.md, generated plists)
 # Never inside the git repo. Default is fine for most installs.
 JARVIS_WORKSPACE="$HOME/.jarvis"

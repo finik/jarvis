@@ -84,12 +84,11 @@ sub() {
 
 sub "digest-prompt.md"
 sub "heartbeat-prompt.md"
-sub "openbrain/prompts/dreams-prompt.md"
 sub "INSTRUCTIONS.md"
 sub "CLAUDE.md"
 sub "bin/start-session.sh"
 
-# Also process openbrain launchd templates
+# Also process openbrain launchd templates — map Jarvis config to OB_ vars
 OPENBRAIN_TEMPLATES="$JARVIS_DIR/openbrain/launchd"
 if [ -d "$OPENBRAIN_TEMPLATES" ]; then
     for template in "$OPENBRAIN_TEMPLATES"/*.plist.template; do
@@ -99,12 +98,16 @@ if [ -d "$OPENBRAIN_TEMPLATES" ]; then
         outfile="$JARVIS_WORKSPACE/launchd/${JARVIS_LAUNCHD_PREFIX}.${shortname}"
 
         sed \
-            -e "s|{{JARVIS_USERNAME}}|$JARVIS_USERNAME|g" \
-            -e "s|{{JARVIS_LAUNCHD_PREFIX}}|$JARVIS_LAUNCHD_PREFIX|g" \
-            -e "s|{{JARVIS_NODE_VERSION}}|${JARVIS_NODE_VERSION:-v18.17.1}|g" \
-            -e "s|{{JARVIS_PYTHON_VERSION}}|${JARVIS_PYTHON_VERSION:-3.13}|g" \
-            -e "s|{{JARVIS_DIR}}|$JARVIS_DIR|g" \
-            -e "s|{{JARVIS_WORKSPACE}}|$JARVIS_WORKSPACE|g" \
+            -e "s|{{OB_USERNAME}}|$JARVIS_USERNAME|g" \
+            -e "s|{{OB_LAUNCHD_PREFIX}}|$JARVIS_LAUNCHD_PREFIX|g" \
+            -e "s|{{OB_NODE_VERSION}}|${JARVIS_NODE_VERSION:-v18.17.1}|g" \
+            -e "s|{{OB_PYTHON_VERSION}}|${JARVIS_PYTHON_VERSION:-3.13}|g" \
+            -e "s|{{OB_DIR}}|$JARVIS_DIR/openbrain|g" \
+            -e "s|{{OB_LOG_DIR}}|$JARVIS_WORKSPACE/logs|g" \
+            -e "s|{{OB_STATS_DIR}}|$JARVIS_WORKSPACE/logs|g" \
+            -e "s|{{OB_MEMORY_FILE}}|$JARVIS_WORKSPACE/MEMORY.md|g" \
+            -e "s|{{OPENBRAIN_URL}}|${OPENBRAIN_URL:-}|g" \
+            -e "s|{{OPENBRAIN_KEY}}|${OPENBRAIN_KEY:-}|g" \
             "$template" > "$outfile"
 
         echo "  Generated (openbrain): $(basename "$outfile")"
