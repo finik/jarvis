@@ -3,6 +3,15 @@
 # Handles permission dialogs, waits for Claude to finish starting,
 # then injects the startup checklist trigger as a user message.
 
+# --- Log rotation: preserve previous session log for debugging ---
+LOG_DIR="$HOME/.jarvis/logs"
+if [ -f "$LOG_DIR/session.log" ]; then
+    cp "$LOG_DIR/session.log" "$LOG_DIR/session-prev.log"
+fi
+
+# --- Startup ping: notify via Telegram before Claude starts ---
+"$HOME/jarvis/bin/notify.sh" "Jarvis session starting..." 2>/dev/null || true
+
 exec expect -c '
 set timeout -1
 

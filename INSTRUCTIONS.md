@@ -20,7 +20,8 @@ Run these steps in order. Do not skip, do not edit any files.
 3. Read MEMORY.md → short-term memory: active tasks, hot projects, recent decisions
 4. Load Open Brain context: `list_thoughts(type="task")` for active tasks, then `list_thoughts(limit=20, order="desc")` for recent captures
 5. Run `CronList` — if no heartbeat job exists, call `CronCreate(cron="0 * * * *", recurring=true, prompt="Read ~/jarvis/heartbeat-prompt.md and follow all instructions in it.")`
-6. Send Telegram: "Jarvis online." (this confirms the checklist completed and the heartbeat is set up)
+6. Check for `~/.jarvis/watchdog-incident.md` — if it exists, the watchdog restarted this session. Read the file, investigate the cause (check `session-prev.log`, look for new prompt patterns to add to `start-session.sh` expect block, note MCP hangs or rate limit issues in Open Brain), notify Dmitry via Telegram with your findings, then delete the incident file.
+7. Send Telegram: "Jarvis online." (this confirms the checklist completed and the heartbeat is set up)
 
 ## Cron Jobs
 - Heartbeat is set up in step 5 of the checklist above. `CronList` first to avoid duplicates on compaction resume.
